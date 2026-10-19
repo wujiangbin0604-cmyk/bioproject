@@ -1,0 +1,51 @@
+{
+  "timestamp_utc": "2026-10-18T05:57:52+00:00",
+  "python": "3.14.0",
+  "numpy": "2.4.2",
+  "pandas": "3.0.0",
+  "scikit_learn": "1.8.0",
+  "joblib": "1.5.3",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "input_filename": "sample_input.csv",
+  "input_bytes": 296895,
+  "input_feature_count": 20531,
+  "repeat_count": 3,
+  "model_sha256": "323c5e9c28faf5426467e17c5429e593235a4c811519e9e1efe04c4910aef7d4",
+  "measurements": {
+    "csv_read": {
+      "median_seconds": 0.23277839999900607,
+      "mean_seconds": 0.23274789999959467,
+      "min_seconds": 0.21166760000051,
+      "max_seconds": 0.25379769999926793,
+      "count": 3
+    },
+    "input_validation": {
+      "median_seconds": 5.30989210000007,
+      "mean_seconds": 5.222443833333576,
+      "min_seconds": 4.986181399999623,
+      "max_seconds": 5.371258000001035,
+      "count": 3
+    },
+    "model_load": {
+      "median_seconds": 0.014375000000654836,
+      "mean_seconds": 0.014465133333942504,
+      "min_seconds": 0.013522900000680238,
+      "max_seconds": 0.015497500000492437,
+      "count": 3
+    },
+    "model_prediction": {
+      "median_seconds": 0.04070950000095763,
+      "mean_seconds": 0.040126633333178084,
+      "min_seconds": 0.038913499998670886,
+      "max_seconds": 0.04075689999990573,
+      "count": 3
+    },
+    "cli_end_to_end": {
+      "median_seconds": 9.712438900000052,
+      "mean_seconds": 9.771336666666684,
+      "min_seconds": 9.625360099998943,
+      "max_seconds": 9.976211000001058,
+      "count": 3
+    }
+  }
+}

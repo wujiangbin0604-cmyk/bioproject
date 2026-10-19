@@ -1,0 +1,36 @@
+{
+  "status": "passed_with_environment_limitation",
+  "release_zip": "gene_expression_classifier_release.zip",
+  "release_zip_sha256": "bee78e1f1c5b94d4a28222da04054a7f2b77b20970c499b47aef2bd0a95ad04a",
+  "release_file_count": 18,
+  "extracted_copy_portable_validation": "passed",
+  "extracted_copy_synthetic_cli": "passed",
+  "extracted_copy_unittest": {
+    "status": "passed",
+    "tests": 27,
+    "skipped": 1,
+    "skip_reason": "release package intentionally excludes local real development sample"
+  },
+  "pytest": {
+    "status": "not_executed",
+    "reason": "pytest is absent; pinned dependency install could not reach configured package index",
+    "install_log_indicates_network_block": true,
+    "pytest_log_indicates_missing_module": true
+  },
+  "isolated_venv_created": true,
+  "requirements_install_in_fresh_venv": "failed: package index network connection denied",
+  "gitignore_rules_checked_in_extracted_temporary_repo": 9,
+  "root_project_git_metadata_present": false,
+  "prediction_equivalence": {
+    "synthetic_example_before_after_and_release_match": true,
+    "local_development_sample_before_after_match": true
+  },
+  "reserved_test_samples_accessed_during_this_task": false,
+  "model_retrained_or_refit": false,
+  "model_sha256": "323c5e9c28faf5426467e17c5429e593235a4c811519e9e1efe04c4910aef7d4",
+  "metadata_sha256": "d52a3514848864a910bc2d8369b45292c2cb2cca2f515183112bc60c62ccc31b",
+  "feature_manifest_sha256": "80f03520d701801c433cec082cf0c8d0b1c0698f6ce40c7f629e43287b6f93cf",
+  "model_hash_unchanged_from_frozen_baseline": true,
+  "metadata_hash_unchanged_from_frozen_baseline": true,
+  "license": "pending owner decision; no formal LICENSE added"
+}

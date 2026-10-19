@@ -1,0 +1,9 @@
+# 本次验证环境Python 3.14；硬投票使用sklearn 1.8 API，精确版本另见锁定文件。
+numpy>=1.24
+pandas>=2.0
+scikit-learn>=1.8,<1.9
+matplotlib>=3.7
+scipy>=1.10
+threadpoolctl>=3.1
+joblib>=1.3
+pillow>=9.0

@@ -1,0 +1,6 @@
+# 部署工件经过下列 Python / 库版本验证；模型加载器也会执行版本检查。
+# Python==3.14.0
+numpy==2.4.2
+pandas==3.0.0
+scikit-learn==1.8.0
+joblib==1.5.3

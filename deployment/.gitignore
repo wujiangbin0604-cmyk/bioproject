@@ -1,0 +1,22 @@
+# Python和测试缓存
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# 本地运行文件和临时目录
+*.log
+reports/test_tmp/
+examples/local_validation/
+*.tmp
+*.temp
+
+# 原始/患者级表达数据与个人环境
+*.tar
+*.tar.gz
+data.csv
+labels.csv
+.env
+.env.*
+personal_paths.*

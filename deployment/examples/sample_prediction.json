@@ -1,0 +1,12 @@
+{
+  "sample_id": "synthetic_format_example",
+  "predicted_class": "BRCA",
+  "model_name": "ANOVA Top50 + LinearSVC",
+  "model_version": "M1-anova50-linearsvc-1.0.0",
+  "input_feature_count": 20531,
+  "selected_feature_count": 50,
+  "input_columns_reordered": false,
+  "inference_status": "success",
+  "probability_output": false,
+  "interpretation_notice": "仅输出五类肿瘤表达类别预测，不是校准概率、患癌风险、临床诊断或早筛结果。"
+}

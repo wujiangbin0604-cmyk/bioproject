@@ -1,0 +1,9 @@
+# 本次实际实验的主要依赖版本；Python 3.14，完整运行信息保存在logs/environment.json。
+numpy==2.4.2
+pandas==3.0.0
+scikit-learn==1.8.0
+scipy==1.17.1
+matplotlib==3.10.8
+threadpoolctl==3.6.0
+joblib==1.5.3
+pillow==12.1.0

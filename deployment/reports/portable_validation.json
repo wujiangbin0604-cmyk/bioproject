@@ -1,0 +1,26 @@
+{
+  "timestamp_utc": "2026-10-18T06:09:15+00:00",
+  "validation_scope": "release package only; synthetic example only",
+  "research_project_imports_used": false,
+  "raw_training_data_required": false,
+  "reserved_test_data_accessed": false,
+  "model_training_performed": false,
+  "status": "passed",
+  "environment": {
+    "python": "3.14.0",
+    "numpy": "2.4.2",
+    "pandas": "3.0.0",
+    "scikit_learn": "1.8.0",
+    "joblib": "1.5.3"
+  },
+  "model_sha256": "323c5e9c28faf5426467e17c5429e593235a4c811519e9e1efe04c4910aef7d4",
+  "metadata_sha256": "d52a3514848864a910bc2d8369b45292c2cb2cca2f515183112bc60c62ccc31b",
+  "manifest_sha256": "80f03520d701801c433cec082cf0c8d0b1c0698f6ce40c7f629e43287b6f93cf",
+  "raw_feature_count": 20531,
+  "selected_feature_count": 50,
+  "manifest_matches_pipeline": true,
+  "synthetic_example_columns": 20532,
+  "pipeline_api_cli_predictions_match": true,
+  "synthetic_prediction": "BRCA",
+  "prediction_is_performance_evidence": false
+}

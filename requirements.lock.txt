@@ -1,0 +1,9 @@
+# 本次真实运行的依赖版本；Python版本见environment.json
+numpy==2.4.2
+pandas==3.0.0
+scikit-learn==1.8.0
+matplotlib==3.10.8
+scipy==1.17.1
+threadpoolctl==3.6.0
+joblib==1.5.3
+pillow==12.1.0

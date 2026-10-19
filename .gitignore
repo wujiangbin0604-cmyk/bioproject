@@ -1,0 +1,43 @@
+# Python缓存与本地环境
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# 含完整表达值或保留集结果的本机实验文件
+results/
+/癌症基因表达数据可视化/原始数据/*.tar
+/癌症基因表达数据可视化/原始数据/*.tar.gz
+/data/data.csv
+/data/labels.csv
+
+# 仅用于本机软件接口验证的真实开发样本（不可公开）
+/deployment/examples/local_validation/
+/deployment/reports/test_tmp/
+
+# 本机缓存、日志、环境配置及临时输出
+*.log
+.pytest_cache/
+.venv/
+venv/
+.env
+.env.*
+personal_paths.*
+*.tmp
+*.temp
+/deployment/reports/full_project_validation.json
+/deployment/reports/部署验证结果.json
+
+# 原始 RNA-Seq 文件及其解压版本（任何目录层级均不提交）
+*.tar
+*.tar.gz
+data.csv
+labels.csv
+
+# Windows/macOS 文件系统杂项
+Thumbs.db
+.DS_Store
+
+# 仅保留经过审查的当前发布包，忽略旧的历史压缩包
+/五癌种基因表达单样本预测部署包.zip

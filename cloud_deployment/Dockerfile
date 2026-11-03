@@ -1,0 +1,25 @@
+FROM python:3.14.0-slim-bookworm
+
+ENV PYTHONUNBUFFERED=1 PYTHONUTF8=1 PYTHONDONTWRITEBYTECODE=1 \
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 \
+    MPLCONFIGDIR=/tmp/matplotlib XDG_CACHE_HOME=/tmp/cache
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends nginx ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY cloud_deployment/requirements-cloud.lock.txt cloud_deployment/requirements-cloud.lock.txt
+COPY backend/requirements-web-runtime.lock.txt backend/requirements-web-runtime.lock.txt
+RUN python -m pip install --no-cache-dir --only-binary=:all: -r cloud_deployment/requirements-cloud.lock.txt
+
+# 构建上下文由白名单打包器创建，包含已构建网页和原字节模型，不包含原始表达矩阵。
+COPY . /app
+RUN python -m cloud_deployment.verify --models \
+    && useradd --uid 10001 --create-home --shell /usr/sbin/nologin genescope
+
+USER 10001:10001
+EXPOSE 8080
+HEALTHCHECK --interval=30s --timeout=15s --start-period=90s --retries=3 \
+    CMD python -c "import urllib.request,json; r=json.load(urllib.request.urlopen('http://127.0.0.1:8080/api/v1/health',timeout=12)); assert r['data']['api']=='ok' and r['data']['model_available']"
+CMD ["python", "-m", "cloud_deployment.serve"]

@@ -1,5 +1,19 @@
 # 高维基因表达特征选择与癌症分类实验
 
+## GeneScope 2.0 多数据集实验平台
+
+新增四数据集注册/导入、四分类模型、训练折内特征筛选、独立进程真实CV、SSE监控、历史对比、特征分析及数据集绑定预测。原640/161分区、M1冻结工件与正式研究结果保持不变。
+
+启动见 [WEB_DEVELOPMENT.md](WEB_DEVELOPMENT.md)，数据处理见 [DATASET_GUIDE.md](DATASET_GUIDE.md)，API见 [API_GUIDE.md](API_GUIDE.md)，实际验收与限制见 [GENESCOPE2_DELIVERY.md](GENESCOPE2_DELIVERY.md)。
+
+香港服务器完整升级与回滚见 [GeneScope 2.0服务器部署](cloud_deployment/GENESCOPE2_SERVER.md)。该包通过Workbench私有上传，原始矩阵缓存和动态注册模型不随GitHub源码发布。
+
+## GeneScope 交互式模型实验室
+
+香港Ubuntu服务器的第一阶段上传包和受限预览说明见 [cloud_deployment/README.md](cloud_deployment/README.md)。该阶段只上线真实历史展示与冻结推理，现场训练明确关闭，保留原模型版本和摘要校验。
+
+`/lab` 提供已验证M0–M5的批量单样本推理及固定640例开发集的后台探索性CV、SSE进度、取消、资源限制和结果导出。使用方法、精确冻结环境和离线工件注册见 [LAB_GUIDE.md](LAB_GUIDE.md)。现场结果单独保存在 `results/lab_experiments/`，不会改写已完成的正式研究记录。
+
 ## 单样本预测部署包
 
 项目包含冻结的 M1（ANOVA Top50 + StandardScaler + LinearSVC）单样本研究型预测接口、输入校验、模型工件校验、自动化测试和中文部署说明。安装与使用见 [`deployment/README.md`](deployment/README.md)，从项目根目录运行 `python deployment\predict.py --input <单样本CSV> --output prediction.json`。预测只在五类已患癌样本之间分类，不表示患癌风险、早筛或临床诊断。
@@ -428,3 +442,7 @@ python final_holdout.py
 - `gene_expression_classifier_release.zip`：可独立解压运行的部署发布包；其模型版本不随源码版本自动改变。
 
 提交代码时请遵循 [`CONTRIBUTING.md`](CONTRIBUTING.md) 中的版本、注释和数据边界约定。仓库没有正式 `LICENSE`，`LICENSE_PENDING.md` 记录了代码、模型工件与上游数据许可仍需分别确认；公开可见不等于授予再分发或商用许可。
+
+## GeneScope Web 可视化平台
+
+仓库包含 React + Arco Design 与 FastAPI 研究结果浏览平台，提供数据探索、特征稳定性、M0–M5比较、融合结果及冻结M1单样本预测入口。安装、启动、API、结果接入和限制说明见 [`WEB_DEVELOPMENT.md`](WEB_DEVELOPMENT.md)。Web接口只读取已保存的白名单汇总文件，不启动训练或重新评价保留集；原始表达矩阵和患者级结果不通过API暴露。

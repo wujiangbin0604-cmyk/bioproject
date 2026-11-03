@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "model_id": "M2",
+  "model_version": "M2-frozen-lab-1.0.0",
+  "name": "高方差 Top20 + Linear SVM",
+  "artifact_sha256": "831578ea6a1952cf20ff8c9853396c17481a2111337f95eb320070a8365d653d",
+  "environment": {
+    "python": "3.14.0",
+    "numpy": "2.4.2",
+    "scikit-learn": "1.8.0",
+    "joblib": "1.5.3"
+  },
+  "raw_feature_count": 20531,
+  "raw_feature_order": "gene_0..gene_20530",
+  "classes": [
+    "BRCA",
+    "COAD",
+    "KIRC",
+    "LUAD",
+    "PRAD"
+  ],
+  "training_samples": 640,
+  "reserved_test_fit_samples": 0,
+  "unique_gene_count": 20,
+  "members": [
+    {
+      "member": "M2",
+      "genes": [
+        "gene_439",
+        "gene_3461",
+        "gene_3540",
+        "gene_3541",
+        "gene_4773",
+        "gene_6410",
+        "gene_8014",
+        "gene_9175",
+        "gene_9176",
+        "gene_9177",
+        "gene_11250",
+        "gene_11550",
+        "gene_15301",
+        "gene_15589",
+        "gene_15896",
+        "gene_15897",
+        "gene_15898",
+        "gene_16283",
+        "gene_19236",
+        "gene_19661"
+      ],
+      "classifier": {
+        "C": 1.0,
+        "class_weight": null,
+        "dual": "auto",
+        "fit_intercept": true,
+        "intercept_scaling": 1,
+        "loss": "squared_hinge",
+        "max_iter": 50000,
+        "multi_class": "ovr",
+        "penalty": "l2",
+        "random_state": 42,
+        "tol": 0.0001,
+        "verbose": 0
+      }
+    }
+  ],
+  "split_manifest_sha256": "602b05c207c8470f9d313d15781907b3bf10909a4017bc97a757bbcfc692b75f",
+  "source_configuration_sha256": "603d146017414a2c60396f4288f2400b442dbc4b390085ae07855678efce6844",
+  "source_audit_sha256": "36ecf0db57cd2f2439f795770cd60daae4a1e3a60e18d569dd8c8f3ba18997cd",
+  "reviewed_custom_sources": {
+    "variance_topk.py": "b7063f3aa45b6ee7ef7046ee587305d5117f79a677f944b2a0215cccf4608a37",
+    "fusion_selection.py": "ca25558d28a69fb39899fd827569cc880beddf956ce62383c04e3db59156f2cf",
+    "hard_voting.py": "e946b3d6052150f7403112102daa9e71dac587ff49395b09eaefdfa9a5f6a9b9"
+  },
+  "tie_rule": null
+}

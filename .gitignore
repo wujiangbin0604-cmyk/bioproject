@@ -41,3 +41,25 @@ Thumbs.db
 
 # 仅保留经过审查的当前发布包，忽略旧的历史压缩包
 /五癌种基因表达单样本预测部署包.zip
+
+# GeneScope Web开发依赖、构建产物和API测试临时文件
+/frontend/node_modules/
+/frontend/dist/
+/backend/.vendor/
+/backend/.vendor314/
+/backend/.venv314/
+/cloud_deployment/dist/
+/backend/tests/.pytest-tmp/
+/backend/.pytest-tmp*/
+/backend/tests/.smoke/
+*.tsbuildinfo
+
+# GeneScope 2: retain registry definitions, exclude downloaded data and generated artifacts
+/datasets/*/raw/
+/datasets/*/audit/
+/datasets/*/metadata.json
+/datasets/*/[0-9a-f]*/
+/experiment_runs/
+/model_registry/
+/reports/genescope2_protected_before.json
+/reports/genescope2_browser*.png

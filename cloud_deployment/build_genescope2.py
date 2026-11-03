@@ -48,7 +48,8 @@ def build(release):
         for p in (ROOT/folder).rglob('*'):
             if p.is_file():
                 copy(p)
-    for name in ['backend/__init__.py','backend/download_geo.py','backend/import_datasets.py','backend/requirements-web-runtime.lock.txt',
+    for name in ['frontend/ARCO_PRO_LICENSE','frontend/ARCO_PRO_NOTICE.md',
+                 'backend/__init__.py','backend/download_geo.py','backend/import_datasets.py','backend/requirements-web-runtime.lock.txt',
                  'data/split_manifest.json','datasets/registry.json','deployment/examples/sample_input.csv',
                  'cloud_deployment/__init__.py','cloud_deployment/serve.py','cloud_deployment/serve2.py',
                  'cloud_deployment/verify.py','cloud_deployment/public_gateway.py','cloud_deployment/platform2_release.py',
@@ -132,5 +133,5 @@ def build(release):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
-    parser.add_argument('--release',default='GeneScope2_20261103_v1')
+    parser.add_argument('--release',default='GeneScope2_20261103_v3')
     build(parser.parse_args().release)

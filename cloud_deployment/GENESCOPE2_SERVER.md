@@ -4,17 +4,17 @@
 
 ## 1. 上传与校验
 
-将本机 `cloud_deployment/dist/GeneScope2_20261103_v1.zip` 和同名 `.zip.sha256` 上传到服务器 `/root/`。这是私有运行包，含真实处理表达矩阵、模型与实验，不上传到GitHub；不包含161例PANCAN保留表达、原始压缩归档、密码或SSH密钥。
+将本机 `cloud_deployment/dist/GeneScope2_20261103_v3.zip` 和同名 `.zip.sha256` 上传到服务器 `/root/`。这是私有运行包，含真实处理表达矩阵、模型与实验，不上传到GitHub；不包含161例PANCAN保留表达、原始压缩归档、密码或SSH密钥。包内保留Arco Design Pro许可和来源声明。
 
 在Workbench终端执行：
 
 ```bash
 cd /root
-sha256sum -c GeneScope2_20261103_v1.zip.sha256
+sha256sum -c GeneScope2_20261103_v3.zip.sha256
 mkdir -p /opt/genescope/releases
-mkdir /opt/genescope/releases/20261103-genescope2-v1
-python3 -m zipfile -e /root/GeneScope2_20261103_v1.zip /opt/genescope/releases/20261103-genescope2-v1
-cd /opt/genescope/releases/20261103-genescope2-v1
+mkdir /opt/genescope/releases/20261103-genescope2-v3
+python3 -m zipfile -e /root/GeneScope2_20261103_v3.zip /opt/genescope/releases/20261103-genescope2-v3
+cd /opt/genescope/releases/20261103-genescope2-v3
 python3 -m cloud_deployment.platform2_release verify
 ```
 

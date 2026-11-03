@@ -25,6 +25,12 @@ def test_registry_required_in_image_but_private_cache_excluded():
     assert seed_file('datasets/pancan/123/matrix.npy')
     assert seed_file('model_registry/model/pipeline.joblib')
 
+def test_release_verifier_supports_ubuntu_python310_without_file_digest(tmp_path,monkeypatch):
+    import hashlib
+    monkeypatch.delattr(hashlib,'file_digest',raising=False)
+    target=tmp_path/'sample';target.write_bytes(b'abc')
+    assert sha(target)=='ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'
+
 def test_gateway_preserves_auth_and_allows_v2_only_after_auth():
     text=render('47.243.232.201')
     assert text.index('basic_auth')<text.index('reverse_proxy')

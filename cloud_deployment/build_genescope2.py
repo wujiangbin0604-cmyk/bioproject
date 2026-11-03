@@ -9,6 +9,22 @@ from cloud_deployment.platform2_release import sha,verify
 
 ROOT=Path(__file__).resolve().parents[1]
 
+DOCKERIGNORE='''.git
+.env
+.env.*
+**/__pycache__
+**/*.pyc
+**/node_modules
+**/.vendor*
+*.zip
+datasets/*/
+!datasets/registry.json
+development_data/
+experiment_runs/
+model_registry/
+results/lab_experiments/
+'''
+
 def build(release):
     if not release.replace('_','').replace('-','').isalnum() or len(release)>100:
         raise ValueError('发布名仅允许字母数字、下划线、连字符')
@@ -114,7 +130,8 @@ def build(release):
     for name,expected in CUSTOM_SOURCE_SHA.items():
         if sha(destination/name)!=expected:
             raise ValueError('冻结自定义类型源码摘要不同')
-    (destination/'.dockerignore').write_text('.git\n.env\n.env.*\n**/__pycache__\n**/*.pyc\n**/node_modules\n**/.vendor*\n*.zip\ndatasets/*/\ndevelopment_data/\nexperiment_runs/\nmodel_registry/\nresults/lab_experiments/\n',encoding='utf-8')
+    # Docker discards trailing slashes; without the exception, datasets/*/ also hides registry.json.
+    (destination/'.dockerignore').write_text(DOCKERIGNORE,encoding='utf-8')
     manifest={'schema_version':2,'release':release,'created_at':datetime.now(timezone.utc).isoformat(),
               'pancan_reserved_expression_included':False,'raw_expression_archives_included':False,
               'datasets':[{'dataset_id':d['dataset_id'],'version':d['version'],'samples':d['samples'],'features':d['features']} for d in data_info],
@@ -133,5 +150,5 @@ def build(release):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
-    parser.add_argument('--release',default='GeneScope2_20261103_v3')
+    parser.add_argument('--release',default='GeneScope2_20261103_v4')
     build(parser.parse_args().release)

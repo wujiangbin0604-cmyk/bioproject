@@ -22,11 +22,22 @@ python3 -m cloud_deployment.platform2_release verify
 
 ## 2. 构建和初始化
 
+**已上传v3且提示`datasets/registry.json`缺失：** 将仓库的cloud_deployment/fix_genescope2_context.py通过Workbench上传到/root/，在原发布目录执行：
+
+```bash
+python3 /root/fix_genescope2_context.py /opt/genescope/releases/20261103-genescope2-v3
+python3 -m cloud_deployment.platform2_release verify
+```
+
+这是v3打包规则错误：Docker忽略规则末尾的/不限定目录，datasets/*/同时排除了registry.json。补丁先核对已发布v3的固定清单摘要及全部259个文件，再添加!datasets/registry.json；只更新该配置对应的校验项，原模型和数据摘要不变，备份位于发布目录旁。重复执行会核验后报告已应用，无需重传数据。未来新包从v4起已直接修复此规则。
+
+下列构建/初始化/启动使用&&相连；构建失败时不会继续初始化或尝试拉取不存在的应用镜像。
+
 ```bash
 docker compose -f compose.genescope2.yaml config
-docker compose -f compose.genescope2.yaml --progress plain build
-python3 -m cloud_deployment.platform2_release initialize
-docker compose -f compose.genescope2.yaml up -d
+docker compose -f compose.genescope2.yaml --progress plain build && \
+python3 -m cloud_deployment.platform2_release initialize && \
+docker compose -f compose.genescope2.yaml up -d --no-build
 docker compose -f compose.genescope2.yaml ps
 docker compose -f compose.genescope2.yaml logs --tail=80 web
 ```

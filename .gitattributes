@@ -6,3 +6,9 @@
 *.csv text eol=lf
 *.joblib binary
 *.zip binary
+*.cmd text eol=crlf
+*.sh text eol=lf
+# Trusted metadata is hashed as raw bytes. Preserve original CRLF on every OS.
+/deployment/models/*.metadata.json binary
+/deployment/lab_models/*.metadata.json binary
+/data/split_manifest.json binary

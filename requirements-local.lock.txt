@@ -1,0 +1,8 @@
+# Local workbench: Python 3.12+; frozen M1 requires Python 3.14.0 exactly.
+-r deployment/requirements.txt
+-r backend/requirements-web-runtime.lock.txt
+scipy==1.17.1
+threadpoolctl==3.6.0
+python-dateutil==2.9.0.post0
+six==1.17.0
+tzdata==2026.6

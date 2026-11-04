@@ -1,6 +1,6 @@
 # GeneScope 2.0 开发与启动
 
-在原 React / TypeScript / Vite / Arco 工作台、FastAPI 和受监督实验进程上增量开发。未另建网站、未推送远程。保留前端兼容依赖和Arco MIT声明。旧版说明已存于 [WEB_DEVELOPMENT_V1.md](WEB_DEVELOPMENT_V1.md)，原实验室说明见 [LAB_GUIDE.md](LAB_GUIDE.md)。
+本文面向前端/API开发；日常使用优先阅读[本地使用指南](docs/LOCAL_USE.md)，单端口运行无需线上服务器。以下保留React / TypeScript / Vite / Arco双终端开发方式及受监督实验进程说明。旧版说明存于[WEB_DEVELOPMENT_V1.md](WEB_DEVELOPMENT_V1.md)，原实验室说明见[LAB_GUIDE.md](LAB_GUIDE.md)。
 
 ## 已验证的本机启动方式
 

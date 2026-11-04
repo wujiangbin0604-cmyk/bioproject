@@ -65,3 +65,6 @@ Thumbs.db
 /reports/genescope2_browser*.png
 /reports/frontend-refresh/*.png
 /reports/visual-repair/*.png
+/.venv-local/
+/local_dist/
+/wheelhouse/

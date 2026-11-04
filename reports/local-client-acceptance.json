@@ -1,0 +1,23 @@
+{
+  "client_version": "2.0.1",
+  "isolated_environment": true,
+  "checks": [
+    "fresh package has no hidden dataset/model cache; same-port API is usable",
+    "production assets and route refresh work without Vite or an online website",
+    "trusted frozen M1 predicts the explicitly synthetic format example",
+    "official matrix imported from a local file with no download dependency",
+    "independent local worker completes real 3-fold CV and registers its model",
+    "new local registered model predicts a measured same-dataset sample"
+  ],
+  "integrity": {
+    "bundle": true,
+    "version": "2.0.1",
+    "verified_files": 320
+  },
+  "initial_ready_datasets": 0,
+  "initial_registered_models": 0,
+  "experiment_task_id": "8f3a77ea8d834c5db452d35d683650ba",
+  "registered_model_prediction": "Basal/TN",
+  "external_frontend_requests": [],
+  "page_errors": []
+}

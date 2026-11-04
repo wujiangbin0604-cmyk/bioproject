@@ -26,7 +26,8 @@ def test_same_port_preserves_api_and_spa_refresh(local_app):
         assert client.get('/api/v1/datasets').json()['items'][0]['status']=='pending'
         for route in ['/', '/lab', '/monitor/unknown', '/features']:
             assert 'Local app fixture' in client.get(route).text
-        assert client.get('/assets/app.js').headers['content-type'].startswith('text/javascript')
+        script_type=client.get('/assets/app.js').headers['content-type'].split(';',1)[0]
+        assert script_type in {'text/javascript','application/javascript'}
 
 
 @pytest.mark.parametrize('path',['/api/v1/missing','/assets/missing.js','/missing.json','/deployment/models/M1_anova_top50.joblib'])

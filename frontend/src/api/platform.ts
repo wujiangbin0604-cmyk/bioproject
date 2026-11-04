@@ -18,6 +18,7 @@ export interface Fold {
   balanced_accuracy: number; fit_seconds: number; n_features: number;
 }
 export interface Task {
+  revision?: number;
   task_id: string; dataset_id: string; kind: string; status: string; experiment_config: Config;
   created_at: string; started_at: string | null; finished_at: string | null; current_stage: string;
   progress: number; completed_folds: number; total_folds: number; elapsed_seconds: number; folds: Fold[];

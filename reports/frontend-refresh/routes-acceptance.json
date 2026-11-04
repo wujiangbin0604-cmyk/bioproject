@@ -1,0 +1,30 @@
+{
+  "routes": [
+    "/",
+    "/datasets",
+    "/lab",
+    "/monitor",
+    "/monitor/b70a58305ec54a2abee3df43952612ba",
+    "/comparison?ids=b70a58305ec54a2abee3df43952612ba",
+    "/features?dataset=gse45827&task=b70a58305ec54a2abee3df43952612ba",
+    "/predict",
+    "/experiments",
+    "/settings",
+    "/research",
+    "/dataset",
+    "/research/features",
+    "/models",
+    "/fusion",
+    "/legacy/lab",
+    "/legacy/predict",
+    "/about"
+  ],
+  "checks": [
+    "dataset search, favorites persistence, drawer heatmap, table view",
+    "keyboard global search navigates to actual dataset",
+    "sidebar persistence and ResizeObserver canvas resize",
+    "stored motion preference and OS reduced-motion respected",
+    "mobile drawer keyboard-accessible navigation"
+  ],
+  "page_errors": []
+}

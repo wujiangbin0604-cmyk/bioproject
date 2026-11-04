@@ -11,14 +11,16 @@ const FusionPage = lazy(() => import('./pages/FusionPage').then((module) => ({ d
 const PredictionPage = lazy(() => import('./pages/PredictionPage').then((module) => ({ default: module.PredictionPage })));
 const AboutPage = lazy(() => import('./pages/AboutPage').then((module) => ({ default: module.AboutPage })));
 const LabPage = lazy(() => import('./pages/LabPage').then((module) => ({ default: module.LabPage })));
-const Overview = lazy(() => import('./pages/PlatformPages').then(m => ({ default: m.OverviewPage })));
-const Datasets = lazy(() => import('./pages/PlatformPages').then(m => ({ default: m.DatasetsPage })));
-const ModelLab = lazy(() => import('./pages/PlatformPages').then(m => ({ default: m.ModelLabPage })));
-const Monitor = lazy(() => import('./pages/PlatformPages').then(m => ({ default: m.MonitoringPage })));
-const Comparison = lazy(() => import('./pages/PlatformPages').then(m => ({ default: m.ComparisonPage })));
-const Experiments = lazy(() => import('./pages/PlatformPages').then(m => ({ default: m.ExperimentsPage })));
-const FeatureAnalysis = lazy(() => import('./pages/PlatformPages').then(m => ({ default: m.FeatureAnalysisPage })));
-const RegisteredPrediction = lazy(() => import('./pages/PlatformPages').then(m => ({ default: m.RegisteredPredictionPage })));
+const Overview = lazy(() => import('./pages/workspace/OverviewPage'));
+const Datasets = lazy(() => import('./pages/workspace/DatasetsPage'));
+const ModelLab = lazy(() => import('./pages/workspace/ModelLabPage'));
+const Monitor = lazy(() => import('./pages/workspace/MonitoringPage'));
+const MonitorCenter = lazy(() => import('./pages/workspace/MonitoringPage').then(m => ({ default: m.MonitoringCenterPage })));
+const Comparison = lazy(() => import('./pages/workspace/ComparisonPage'));
+const Experiments = lazy(() => import('./pages/workspace/ExperimentsPage'));
+const FeatureAnalysis = lazy(() => import('./pages/workspace/FeaturesPage'));
+const RegisteredPrediction = lazy(() => import('./pages/workspace/PredictionPage'));
+const Settings = lazy(() => import('./pages/workspace/SettingsPage'));
 
 function PageLoader() {
   return <div className="remote-state"><Spin tip="正在载入研究页面…" /></div>;
@@ -30,6 +32,8 @@ export default function App() {
     <Route path="/research" element={<Suspense fallback={<PageLoader />}><DashboardPage /></Suspense>} />
     <Route path="/datasets" element={<Suspense fallback={<PageLoader />}><Datasets /></Suspense>} />
     <Route path="/monitor/:taskId" element={<Suspense fallback={<PageLoader />}><Monitor /></Suspense>} />
+    <Route path="/monitor" element={<Suspense fallback={<PageLoader />}><MonitorCenter /></Suspense>} />
+    <Route path="/settings" element={<Suspense fallback={<PageLoader />}><Settings /></Suspense>} />
     <Route path="/comparison" element={<Suspense fallback={<PageLoader />}><Comparison /></Suspense>} />
     <Route path="/experiments" element={<Suspense fallback={<PageLoader />}><Experiments /></Suspense>} />
     <Route path="/dataset" element={<Suspense fallback={<PageLoader />}><DatasetPage /></Suspense>} />

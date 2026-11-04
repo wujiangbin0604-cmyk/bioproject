@@ -63,3 +63,5 @@ Thumbs.db
 /model_registry/
 /reports/genescope2_protected_before.json
 /reports/genescope2_browser*.png
+/reports/frontend-refresh/*.png
+/reports/visual-repair/*.png

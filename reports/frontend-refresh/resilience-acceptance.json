@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "two real SSE transport failures, fallback GET and automatic reconnect",
+    "route cleanup closes EventSource and stops fallback polling",
+    "dataset switch discards PANCAN ranking before showing GEO probe features",
+    "failed dataset API displays actionable error instead of invented records"
+  ],
+  "transport_test_task": "3c1afc55955c4f68a79b0be248a979c7",
+  "page_errors": []
+}

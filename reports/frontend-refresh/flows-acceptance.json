@@ -1,0 +1,29 @@
+{
+  "routes": [],
+  "checks": [
+    "dataset search, favorites persistence, drawer heatmap, table view",
+    "keyboard global search navigates to actual dataset",
+    "sidebar persistence and ResizeObserver canvas resize",
+    "stored motion preference and OS reduced-motion respected",
+    "persisted four-step config, single real submission, SSE completion, refresh recovery, real folds and logs",
+    "comparison metric tabs and expression heatmap transpose",
+    "real measured single-sample prediction, true upload progress, invalid CSV blocked",
+    "real worker cancellation and terminal timeline"
+  ],
+  "created_task_id": "b70a58305ec54a2abee3df43952612ba",
+  "prediction": {
+    "dataset_id": "gse45827",
+    "dataset_version": "214fa88857063900",
+    "model_id": "1eb39b7fb470423d97ccee34ddeebd61",
+    "model_name": "linear_svc",
+    "model_version": "1eb39b7fb470",
+    "sample_id": "GSM1116084",
+    "predicted_class": "Basal/TN",
+    "input_feature_count": 29873,
+    "selected_feature_count": 29873,
+    "inference_seconds": 0.03465719999803696,
+    "probability_output": false
+  },
+  "cancelled_task_id": "d6a007f5f0e04772bd437d2b571b3976",
+  "page_errors": []
+}

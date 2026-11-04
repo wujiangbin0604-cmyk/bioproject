@@ -54,7 +54,7 @@ export function ModelsPage() {
     tooltip: { trigger: 'axis', valueFormatter: (value) => `${(Number(value) * 100).toFixed(1)}%` },
     legend: { type: 'scroll', top: 0, data: MODELS.filter((model) => availableIds.has(model.id)).map((model) => model.id) },
     grid: { left: 60, right: 20, top: 46, bottom: 44 },
-    xAxis: { type: 'category', data: ['BRCA', 'KIRC', 'COAD', 'LUAD', 'PRAD'].map((code) => `${code}\n${CLASS_LABELS[code]}`), axisLabel: { fontSize: 10 } },
+    xAxis: { type: 'category', data: ['BRCA', 'KIRC', 'COAD', 'LUAD', 'PRAD'].map((code) => `${code}\n${CLASS_LABELS[code]}`), axisLabel: { fontSize: 11 } },
     yAxis: { type: 'value', min: 0.7, max: 1.01, axisLabel: { formatter: (value) => `${(Number(value) * 100).toFixed(0)}%` }, splitLine: { lineStyle: { color: PALETTE.grid } } },
     series: MODELS.filter((model) => availableIds.has(model.id)).map((model) => ({ name: model.id, type: 'bar', barMaxWidth: 17, data: ['BRCA', 'KIRC', 'COAD', 'LUAD', 'PRAD'].map((code) => Number(perClassRows.find((row) => row.model === model.id && row.cancer_type === code)?.f1 ?? 0)) })),
   }), [perClassRows, availableIds]);
@@ -73,7 +73,7 @@ export function ModelsPage() {
   const errorRows = errors.envelope?.data.shared_error_counts ?? [];
   const overlapOption: EChartsOption = {
     tooltip: { trigger: 'axis' }, grid: { left: 55, right: 16, top: 18, bottom: 68 },
-    xAxis: { type: 'category', data: errorRows.map((row) => `${row.model_a}/${row.model_b}`), axisLabel: { rotate: 50, fontSize: 9 } },
+    xAxis: { type: 'category', data: errorRows.map((row) => `${row.model_a}/${row.model_b}`), axisLabel: { rotate: 50, fontSize: 11 } },
     yAxis: { type: 'value', name: '共同错误样本数', minInterval: 1, splitLine: { lineStyle: { color: PALETTE.grid } } },
     series: [{ type: 'bar', barMaxWidth: 22, data: errorRows.map((row) => row.shared_error_sample_count), itemStyle: { color: PALETTE.coral, borderRadius: [4, 4, 0, 0] } }],
   };

@@ -28,7 +28,7 @@ export function FusionPage() {
   const fusionOption = useMemo<EChartsOption>(() => ({
     tooltip: { trigger: 'axis', valueFormatter: (value) => `${(Number(value) * 100).toFixed(2)}%` },
     grid: { left: 60, right: 22, top: 28, bottom: 90 },
-    xAxis: { type: 'category', data: perf.map((row) => SCHEME_NAMES[String(row.scheme)] ?? String(row.scheme)), axisLabel: { rotate: 28, interval: 0, fontSize: 9 } },
+    xAxis: { type: 'category', data: perf.map((row) => SCHEME_NAMES[String(row.scheme)] ?? String(row.scheme)), axisLabel: { rotate: 28, interval: 0, fontSize: 11 } },
     yAxis: { type: 'value', min: 0.94, max: 1.005, axisLabel: { formatter: (value) => `${(Number(value) * 100).toFixed(0)}%` }, splitLine: { lineStyle: { color: PALETTE.grid } } },
     series: [{ type: 'bar', barMaxWidth: 26, data: perf.map((row) => ({ value: chartNumber(row.validation_macro_f1_mean), itemStyle: { color: String(row.scheme).startsWith('anova') ? PALETTE.blue : String(row.scheme).startsWith('variance') ? PALETTE.teal : PALETTE.amber, borderRadius: [4, 4, 0, 0] } })) }],
   }), [perf]);

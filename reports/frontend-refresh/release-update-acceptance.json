@@ -1,0 +1,10 @@
+{
+  "archive": "GeneScope2_UI_20261104_v2.zip",
+  "bytes": 651388,
+  "sha256": "3aea5a76e68ee144977e0746d15aa10a7b39996911445c5274d1c6077851d786",
+  "actual_v3_release_check": "passed",
+  "old_release_files": 259,
+  "new_release_files": 285,
+  "nonfrontend_files_changed": 0,
+  "rollback": "passed"
+}

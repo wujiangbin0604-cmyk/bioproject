@@ -1,0 +1,56 @@
+{
+  "checks": [
+    "real API statistic and caption minimum 12px",
+    "hover moves statistic card 4px and scales icon to 1.05",
+    "stat navigation and restrained quick-start icon hover",
+    "continuous helix highlight flow and real pointer parallax",
+    "fade-out, data swap, fade-in and rapid tab reversal",
+    "actual ECharts tooltip, legend toggle and PNG export",
+    "submenu expand/collapse and responsive chart resize",
+    "drag enter/leave highlighting and real drop validation error",
+    "OS reduced motion stops strand flow and micro animations",
+    "real running stage pulse, progress and actual cancellation feedback"
+  ],
+  "frames": [
+    "stat-hover-before",
+    "stat-hover-mid",
+    "stat-hover-after",
+    "quick-start-hover",
+    "dna-frame-1",
+    "dna-frame-2",
+    "tab-before",
+    "tab-exit",
+    "tab-after",
+    "chart-real-tooltip",
+    "chart-legend-toggled",
+    "upload-drag-enter",
+    "upload-validation-error",
+    "monitor-live-1",
+    "monitor-live-2",
+    "monitor-cancelled"
+  ],
+  "viewports": [
+    [
+      1440,
+      900
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      1280,
+      800
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "dna_stroke_offsets": [
+    "-34.9677px",
+    "-46.5476px"
+  ],
+  "live_motion_task": "e053ad17ced045d49942d616b5ff194d",
+  "page_errors": []
+}

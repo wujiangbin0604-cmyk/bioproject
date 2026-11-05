@@ -1,6 +1,12 @@
 import type { CSSProperties } from 'react';
-export type IconName = 'home' | 'database' | 'flask' | 'monitor' | 'compare' | 'features' | 'target' | 'history' | 'settings' | 'search' | 'upload' | 'arrow' | 'chevron' | 'check' | 'close' | 'star' | 'download' | 'expand' | 'grid' | 'list' | 'bell' | 'user' | 'menu' | 'collapse' | 'sun' | 'moon' | 'copy' | 'refresh' | 'dna' | 'info';
+export type IconName = 'home' | 'database' | 'flask' | 'monitor' | 'compare' | 'features' | 'target' | 'history' | 'settings' | 'search' | 'upload' | 'arrow' | 'chevron' | 'check' | 'close' | 'star' | 'download' | 'expand' | 'grid' | 'list' | 'bell' | 'user' | 'menu' | 'collapse' | 'sun' | 'moon' | 'copy' | 'refresh' | 'dna' | 'info' | 'game' | 'trophy' | 'timer' | 'flame' | 'play' | 'gift';
 const paths: Record<IconName, React.ReactNode> = {
+  game: <><path d="M7 7h10c5 0 7 13 3 13-2 0-3-4-5-4H9c-2 0-3 4-5 4C0 20 2 7 7 7Z" /><path d="M8 10v5m-2.5-2.5h5M16 11h.1M18 14h.1" /></>,
+  trophy: <><path d="M7 3h10v6a5 5 0 0 1-10 0ZM7 5H3v3a5 5 0 0 0 5 5m9-8h4v3a5 5 0 0 1-5 5M12 14v5m-5 2h10m-8-2h6" /></>,
+  timer: <><circle cx="12" cy="14" r="8" /><path d="M12 10v5l3 2M9 2h6M12 2v4m6 0 2-2" /></>,
+  flame: <path d="M13 2c2 7-5 7-2 12 2-1 4-3 5-5 4 4 5 7 2 11-2 3-9 3-12-1C2 14 6 9 8 7c-1 5 2 6 2 6-2-6 3-7 3-11Z" />,
+  play: <path d="m8 4 13 8-13 8Z" />,
+  gift: <><path d="M3 8h18v4H3zM5 12v9h14v-9M12 8v13" /><path d="M12 8C2 8 6-2 12 6c6-8 10 2 0 2" /></>,
   home: <><path d="m3 10 9-7 9 7v10H7V10" /><path d="M10 20v-7h5v7" /></>,
   database: <><ellipse cx="12" cy="5" rx="8" ry="3" /><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0" /></>,
   flask: <><path d="M9 3h6m-5 0v7L4 19q-1 3 3 3h10q4 0 3-3l-6-9V3M7 16h10" /><path d="m11 13 2 1" /></>,

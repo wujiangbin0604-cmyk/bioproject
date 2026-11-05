@@ -8,6 +8,7 @@ import '@arco-design/web-react/dist/css/arco.css';
 import './styles/global.less';
 import './styles/bio-theme.less';
 import './styles/visual-refinement.less';
+import './styles/research-dashboard.less';
 import { PreferencesProvider } from './hooks/usePreferences';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

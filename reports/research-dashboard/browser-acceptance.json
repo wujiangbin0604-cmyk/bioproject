@@ -1,0 +1,61 @@
+{
+  "checks": [
+    "live API, four summary cards, workflow, ECharts canvas and service status loaded",
+    "1920 / 1440 / 1024 / 390 layouts have no page or header overflow",
+    "mobile drawer and chart tabs navigate correctly",
+    "dataset selection refreshes statistics and persists the selection",
+    "motion toggle, collapsed game navigation and challenge CTA work",
+    "all existing workspace routes and new gallery / presentation routes render",
+    "API failure shows errors, unavailable values and empty charts; reduced motion respected"
+  ],
+  "page_errors": [],
+  "console_errors": [],
+  "layouts": [
+    {
+      "name": "desktop-wide",
+      "body": 1920,
+      "viewport": 1920,
+      "header": 1920
+    },
+    {
+      "name": "desktop",
+      "body": 1440,
+      "viewport": 1440,
+      "header": 1440
+    },
+    {
+      "name": "tablet",
+      "body": 1024,
+      "viewport": 1024,
+      "header": 1024
+    },
+    {
+      "name": "mobile",
+      "body": 390,
+      "viewport": 390,
+      "header": 390
+    }
+  ],
+  "datasets": [
+    {
+      "id": "pancan",
+      "status": "ready",
+      "samples": 640
+    },
+    {
+      "id": "gse4290",
+      "status": "ready",
+      "samples": 176
+    },
+    {
+      "id": "gse44076",
+      "status": "ready",
+      "samples": 246
+    },
+    {
+      "id": "gse45827",
+      "status": "ready",
+      "samples": 130
+    }
+  ]
+}

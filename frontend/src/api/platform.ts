@@ -14,6 +14,7 @@ export interface Config {
   repeats: number; c: number; gamma: string; n_estimators: number; max_depth: number | null;
 }
 export interface Fold {
+  train_samples?: number; validation_samples?: number;
   algorithm: string; repeat: number; fold: number; macro_f1: number; accuracy: number;
   balanced_accuracy: number; fit_seconds: number; n_features: number;
 }

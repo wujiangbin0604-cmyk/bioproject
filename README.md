@@ -1,12 +1,18 @@
 # GeneScope 2.0
 
-**可在本机运行的基因表达分析与机器学习实验平台。线上网站不可访问时，仍可在自己的电脑使用。**
+**基因表达分析与机器学习科研平台，支持在线访问与本机独立运行。**
+
+**线上网址：[https://47.243.232.201/](https://47.243.232.201/)** · [基因猎手](https://47.243.232.201/games/gene-hunter) · [服务器更新与免登录配置](cloud_deployment/DASHBOARD_PUBLIC_SERVER_UPDATE.md)
+
+[下载服务器更新包](server_updates/GeneScope2_Dashboard_Public_20261105_v1.zip) · [SHA-256 校验文件](server_updates/GeneScope2_Dashboard_Public_20261105_v1.zip.sha256)
+
+本次服务器更新包包含新版医疗科研仪表盘，并将网站改为无需账号密码访问。现有服务器需执行上述更新说明中的应用命令，前端文件本身无法取消服务器网关的验证。
 
 数据集管理 → 模型配置 → 真实CV训练 → 实时监控 → 结果比较 → 单样本预测。React / TypeScript / Arco / ECharts 前端，FastAPI 与受监督Python计算进程。
 
 [下载本地运行包](https://github.com/wujiangbin0604-cmyk/bioproject/releases/latest) · [本地安装与使用](docs/LOCAL_USE.md) · [数据集指南](DATASET_GUIDE.md) · [命令行/API](API_GUIDE.md) · [科研复现](docs/RESEARCH_REFERENCE.md)
 
-![GeneScope实际运行截图](docs/screenshots/genescope2-overview.png)
+![GeneScope实际运行截图](docs/screenshots/genescope2-research-dashboard.png)
 
 截图来自已导入数据的实际环境。首次下载不携带原始表达矩阵、其他人的实验记录或动态注册模型；这些内容由你在本机导入和生成。
 

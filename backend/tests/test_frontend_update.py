@@ -13,6 +13,19 @@ def put(root, name, content):
     return hashlib.sha256(content).hexdigest()
 
 
+def test_frontend_archive_checksum_uses_posix_lf(tmp_path, monkeypatch):
+    from cloud_deployment import build_frontend_update
+    root = tmp_path / 'package-source'
+    put(root, 'frontend/dist/index.html', b'<html>test frontend</html>')
+    put(root, 'cloud_deployment/update_frontend.py', b'# updater fixture\n')
+    put(root, 'cloud_deployment/FRONTEND_UPDATE.md', b'Upload instructions\n')
+    monkeypatch.setattr(build_frontend_update, 'ROOT', root)
+    archive = build_frontend_update.build('checksum-lf-regression')
+    expected = (hashlib.sha256(archive.read_bytes()).hexdigest() + '  ' + archive.name + '\n').encode('ascii')
+    actual = archive.with_suffix('.zip.sha256').read_bytes()
+    assert actual == expected, 'Linux sha256sum must not interpret CR as part of the archive filename'
+
+
 @pytest.fixture
 def pair(tmp_path):
     root, payload = tmp_path/'release', tmp_path/'update'

@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Spin } from '@arco-design/web-react';
 import { AppShell } from './layouts/AppShell';
+import { WorkspaceProvider } from './hooks/useWorkspace';
 
 const DashboardPage = lazy(() => import('./pages/DashboardPage').then((module) => ({ default: module.DashboardPage })));
 const DatasetPage = lazy(() => import('./pages/DatasetPage').then((module) => ({ default: module.DatasetPage })));
@@ -21,13 +22,19 @@ const Experiments = lazy(() => import('./pages/workspace/ExperimentsPage'));
 const FeatureAnalysis = lazy(() => import('./pages/workspace/FeaturesPage'));
 const RegisteredPrediction = lazy(() => import('./pages/workspace/PredictionPage'));
 const Settings = lazy(() => import('./pages/workspace/SettingsPage'));
+const GeneHunter = lazy(() => import('./games/gene-hunter/GeneHunterPage'));
+const Gallery = lazy(() => import('./pages/workspace/ResearchResourcesPage').then(m => ({ default: m.GalleryPage })));
+const Presentation = lazy(() => import('./pages/workspace/ResearchResourcesPage').then(m => ({ default: m.PresentationPage })));
 
 function PageLoader() {
   return <div className="remote-state"><Spin tip="正在载入研究页面…" /></div>;
 }
 
 export default function App() {
-  return <Routes><Route element={<AppShell />}>
+  return <WorkspaceProvider><Routes><Route element={<AppShell />}>
+    <Route path="/gallery" element={<Suspense fallback={<PageLoader />}><Gallery /></Suspense>} />
+    <Route path="/presentation" element={<Suspense fallback={<PageLoader />}><Presentation /></Suspense>} />
+    <Route path="/games/gene-hunter" element={<Suspense fallback={<PageLoader />}><GeneHunter /></Suspense>} />
     <Route path="/" element={<Suspense fallback={<PageLoader />}><Overview /></Suspense>} />
     <Route path="/research" element={<Suspense fallback={<PageLoader />}><DashboardPage /></Suspense>} />
     <Route path="/datasets" element={<Suspense fallback={<PageLoader />}><Datasets /></Suspense>} />
@@ -47,5 +54,5 @@ export default function App() {
     <Route path="/lab" element={<Suspense fallback={<PageLoader />}><ModelLab /></Suspense>} />
     <Route path="/legacy/lab" element={<Suspense fallback={<PageLoader />}><LabPage /></Suspense>} />
     <Route path="*" element={<Navigate to="/" replace />} />
-  </Route></Routes>;
+  </Route></Routes></WorkspaceProvider>;
 }

@@ -46,6 +46,6 @@ export function SplitDistributionCard({ task, study, loading, error }: { task?: 
   return <GlassCard className="dashboard-split" title={<><Icon name="features" /> 数据集划分</>} subtitle="Train / Validation / Test" extra={<span className="panel-chip">{hasStudy ? '固定划分' : task ? `${task.experiment_config.folds}折 CV` : '待实验'}</span>}>
     <ErrorState message={error} />
     {loading ? <LoadingSkeleton rows={4} /> : hasStudy || fold ? <><EChart option={option} style={{ height: 170 }} /><div className="split-summary">{hasStudy ? <><span>开发集 <b>{formatCount(study!.split.development_samples)}</b></span><span>保留集 <b>{formatCount(study!.split.reserved_samples)}</b></span></> : <><span>Train <b>{formatCount(fold?.train_samples)}</b></span><span>Validation <b>{formatCount(fold?.validation_samples)}</b></span></>}</div></> : <EmptyState title="暂无可用划分记录" description="完成实验后展示实际训练与验证样本数" action={<Link to="/lab">创建实验</Link>} />}
-    <p className="dashboard-footnote">{hasStudy ? '原研究全队列固定划分；保留集用于回顾性评价。点击图例可切换类别。' : fold ? `最近实验 ${task?.task_id.slice(0, 8)} · 第${fold.repeat}轮第${fold.fold}折；未设置独立 Test 集。` : '按真实实验协议展示，不预设划分比例。'}</p>
+    <p className="dashboard-footnote">{hasStudy ? '原研究全队列固定划分。点击图例可切换类别。' : fold ? `最近实验 ${task?.task_id.slice(0, 8)} · 第${fold.repeat}轮第${fold.fold}折。` : '完成实验后展示训练与验证样本分布。'}</p>
   </GlassCard>;
 }

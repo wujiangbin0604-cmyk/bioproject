@@ -15,7 +15,7 @@ export function RoundResultCard({ level, state }: { level: GeneHunterLevel; stat
         const gene = level.genes.find(g => g.geneId === id)!, hit = !!result.selections[id];
         return <li key={id}><span className={`gh-rank gh-rank-${i + 1}`}>{i + 1}</span><b>{id}</b><div className="gh-rank-track"><i style={{ width: `${gene.discriminativeScore * 100}%` }} /></div><span>{gene.discriminativeScore.toFixed(2)}</span><span className={`gh-hit-status ${hit ? 'gh-is-hit' : ''}`}>{hit ? '命中' : '遗漏'}</span></li>;
       })}</ol>
-      <p className="gh-learning-note">{result.hits >= level.targetHits ? '观察很敏锐！下一关试着留意表达方向相反的特征。' : '回看遗漏的行：两组颜色是否明显不同？也要留意组内波动。'}<br />差异明显是线索；实际特征选择还需要验证与稳定性评估。</p>
+      <p className="gh-learning-note">{result.hits >= level.targetHits ? '观察很敏锐！下一关试着留意表达方向相反的特征。' : '回看遗漏的行：两组颜色是否明显不同？也要留意组内波动。'}</p>
     </> : <>
       <div className="gh-locked-ranking"><span className="gh-ranking-icon"><Icon name="compare" size={32} /></span><strong>先用你的观察力做出选择</strong><p>时间结束或提交本关后，<br />揭晓 Top 5 并对比命中情况。</p><div aria-hidden="true">{[78, 63, 46].map((width, i) => <span key={i}><i>{i + 1}</i><b style={{ width: `${width}%` }} /></span>)}</div></div>
       <div className={`gh-last-feedback ${feedback ? `gh-feedback-${feedback.kind}` : ''}`} role="status" aria-live="polite" aria-atomic="true">{feedback ? <><Icon name={feedback.kind === 'high' ? 'check' : 'info'} size={16} /><span><b>{feedback.geneId}</b> · {feedback.kind === 'high' ? `关键特征 +${feedback.points}` : feedback.kind === 'medium' ? '中等价值 +300，连击重置' : '组间差异较弱，连击重置'}</span></> : <><Icon name="info" size={16} /><span>选择后，这里会显示即时反馈</span></>}</div>

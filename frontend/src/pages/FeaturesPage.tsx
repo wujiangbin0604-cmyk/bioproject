@@ -62,17 +62,16 @@ export function FeaturesPage() {
       </Select></div><div className="control-context">全特征方案固定为20,531列；该页面只读取已完成的开发集记录。</div></div>
     </Card>
     <Grid.Row gutter={[16, 16]}>
-      <Grid.Col xs={24} xl={15}><ChartPanel title={`${METHOD_NAMES[method]} 分类性能曲线`} subtitle="5折×20轮重复交叉验证；100折结果存在相关性，按描述性统计展示。" option={perfOption} loading={performance.loading} error={performance.error} status={performance.envelope?.status} empty={!methodRows.length} height={340} /></Grid.Col>
+      <Grid.Col xs={24} xl={15}><ChartPanel title={`${METHOD_NAMES[method]} 分类性能曲线`} subtitle="5折 × 20轮重复交叉验证。" option={perfOption} loading={performance.loading} error={performance.error} status={performance.envelope?.status} empty={!methodRows.length} height={340} /></Grid.Col>
       <Grid.Col xs={24} xl={9}><ChartPanel title="特征选择稳定性" subtitle={`K=${k} · 开发集30次分层子采样`} option={stabilityOption} loading={stability.loading} error={stability.error} status={stability.envelope?.status} empty={!stabilityRows.length} height={340} /></Grid.Col>
     </Grid.Row>
-    <div className="source-row"><SourceNote source={performance.envelope?.source} note={performance.envelope?.data.statistical_note} /><SourceNote source={stability.envelope?.source} note={stability.envelope?.data.statistical_note} /></div>
+    <div className="source-row"><SourceNote source={performance.envelope?.source} /><SourceNote source={stability.envelope?.source} /></div>
     <Card className="panel-card" bordered={false} title={<div><div className="panel-title">特征入选频率</div><div className="panel-subtitle">{METHOD_NAMES[stabilityMethod === 'all' ? 'anova' : stabilityMethod]} · K={k} · 搜索 gene_* 匿名特征</div></div>}>
       <div className="table-toolbar"><input className="search-input" aria-label="搜索基因特征" placeholder="搜索 gene_…" value={search} onChange={(event) => { setSearch(event.target.value); setPage(1); }} /><span className="muted-inline">{genes.envelope?.data.total ?? 0} 个结果</span></div>
       <RemotePanel loading={genes.loading} error={genes.error} status={genes.envelope?.status} empty={!geneRows.length}>
         <Table rowKey="gene_id" columns={columns} data={geneRows} pagination={{ current: page, pageSize: 12, total: genes.envelope?.data.total ?? 0, onChange: setPage, sizeCanChange: false }} />
       </RemotePanel>
-      <div className="table-note">{genes.envelope?.data.note ?? 'gene_* 为匿名特征标识；统计稳定性不等于生物学功能重要性。'}</div>
+      <div className="table-note">gene_* 为原始匿名特征标识。</div>
     </Card>
-    <div className="notice-callout"><strong>防止数据泄漏：</strong>全开发集的 ANOVA 或方差排名只用于已标记的探索性分析。正式交叉验证在每个训练折内重新拟合筛选器，不能把全开发集 Top-K 名单固定用于验证。</div>
   </div>;
 }

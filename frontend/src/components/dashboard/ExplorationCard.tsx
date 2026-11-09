@@ -27,6 +27,6 @@ export function ExplorationCard({ dataset, rows, loading, error }: { dataset?: D
     <div className="dashboard-tabs exploration-tabs" aria-label="探索图表类型">{[['counts', '类别样本数'], ['features', 'Top-K 性能'], ['heatmap', '表达热图']].map(([key, label]) => <button key={key} aria-pressed={tab === key} onClick={() => setTab(key)}>{label}</button>)}</div>
     <ErrorState message={error} />
     {loading ? <LoadingSkeleton rows={5} /> : tab === 'heatmap' ? <HeatmapExplorer data={dataset?.heatmap} compact /> : (tab === 'features' ? rows.length : Object.keys(dataset?.class_counts ?? {}).length) ? <EChart option={option} style={{ height: 224 }} /> : <EmptyState title={tab === 'features' ? '暂无特征选择实验' : '暂无样本统计'} action={<Link to={tab === 'features' ? '/lab' : '/datasets'}>{tab === 'features' ? '创建真实实验' : '导入数据集'}</Link>} />}
-    {tab !== 'heatmap' && <p className="dashboard-footnote">{tab === 'features' ? '最近实验的实际 K 与 CV Macro-F1；算法、选择方法及划分可能不同，实验详情可追溯。' : '纵轴从 0 开始；数据来自当前数据集的实际纳入样本。'}</p>}
+    {tab !== 'heatmap' && <p className="dashboard-footnote">{tab === 'features' ? '最近实验的实际 K 与 CV Macro-F1；可查看对应实验详情。' : '纵轴从 0 开始；数据来自当前数据集的实际纳入样本。'}</p>}
   </GlassCard>;
 }

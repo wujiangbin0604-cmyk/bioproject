@@ -52,22 +52,21 @@ export function PredictionPage() {
           </div>
           {file && <div className="selected-file"><span className="file-chip">CSV</span><div><strong>{file.name}</strong><small>{(file.size / 1024).toFixed(1)} KB{example ? ' · 合成格式示例' : ''}</small></div><Button type="text" onClick={() => { setFile(null); setExample(false); setResult(null); }}>移除</Button></div>}
           {error && <Alert className="prediction-error" type="error" title="无法完成预测" content={error} />}
-          <div className="prediction-actions"><Button type="primary" disabled={!file || busy} loading={busy} onClick={submit}>{busy ? '正在校验并推理…' : '运行单样本预测'}</Button><Button onClick={loadExample}>加载格式示例</Button><span>示例仅用于格式演示，不是真实患者数据。</span></div>
+          <div className="prediction-actions"><Button type="primary" disabled={!file || busy} loading={busy} onClick={submit}>{busy ? '正在校验并推理…' : '运行单样本预测'}</Button><Button onClick={loadExample}>加载格式示例</Button><span>合成格式示例</span></div>
           {result && <div className="prediction-result"><div className="result-topline"><span>模型输出</span><Tag color="green">推理完成</Tag></div><div className="result-class"><strong>{result.predicted_class}</strong><span>{CLASS_LABELS[result.predicted_class] ?? '未知类别'}</span></div><div className="result-facts">
             <div><span>模型</span><strong>{result.model_name}</strong></div><div><span>版本</span><strong>{result.model_version}</strong></div><div><span>输入特征</span><strong>{result.input_feature_count.toLocaleString()}</strong></div><div><span>模型选择</span><strong>{result.selected_feature_count} 个基因</strong></div><div><span>恢复列顺序</span><strong>{result.input_columns_reordered ? '是' : '否'}</strong></div>
-          </div><p>{result.interpretation_notice}</p></div>}
+          </div></div>}
         </Card>
       </Grid.Col>
       <Grid.Col xs={24} xl={9}>
         <Card className="panel-card" bordered={false} title={<div><div className="panel-title">输入格式要求</div><div className="panel-subtitle">由原有 Python 部署校验器最终裁决</div></div>}>
           <div className="requirements-list">{['恰好一行表达值', '20,531个唯一 gene_* 列', '列名与模型训练特征完全一致', '可调整列顺序，按基因名恢复', '不允许缺失、额外、重复、非数值或无穷值', 'sample_id 可选且不会进入模型'].map((item, index) => <div key={item}><span>{String(index + 1).padStart(2, '0')}</span>{item}</div>)}</div>
-          <div className="requirements-note">上传内容仅在后端内存校验和推理，不会保存为训练数据。</div>
+          <div className="requirements-note">上传后按特征列名校验并运行模型推理。</div>
         </Card>
         <Card className="panel-card class-key-card" bordered={false} title={<div><div className="panel-title">类别缩写</div><div className="panel-subtitle">模型只在五类肿瘤中输出一个类别</div></div>}>
           {Object.entries(CLASS_LABELS).map(([code, label]) => <div className="class-key-row" key={code}><strong>{code}</strong><span>{label}</span></div>)}
         </Card>
       </Grid.Col>
     </Grid.Row>
-    <Alert className="clinical-notice" type="warning" title="科研用途声明" content="本系统仅供科研与课程演示。预测结果仅代表既定五类肿瘤表达类别的模型输出，不适用于疾病筛查、临床诊断或医疗决策。系统不提供预测概率、置信度或患癌风险评分。" />
   </div>;
 }

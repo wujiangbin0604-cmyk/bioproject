@@ -147,12 +147,12 @@ export function LabPage() {
   }), [task?.folds]);
 
   return <div className="page-stack lab-page">
-    <PageHeading eyebrow="INTERACTIVE MODEL LAB" title="交互式模型实验室" description="在已验证的冻结模型上运行单样本推理，或在固定640例开发集上发起可追踪的探索性实验。" extra={<Tag color="arcoblue">现场计算 · 独立记录</Tag>} />
+    <PageHeading eyebrow="INTERACTIVE MODEL LAB" title="交互式模型实验室" description="在已验证的冻结模型上运行单样本推理，或在固定640例开发集上发起可追踪的模型实验。" extra={<Tag color="arcoblue">现场计算 · 独立记录</Tag>} />
     <div className="lab-mode-switch" role="group" aria-label="实验室模式">
       <button aria-pressed={mode === 'inference'} onClick={() => { setMode('inference'); setError(''); }}><b>A</b><span>多模型实时推理<small>冻结工件 · 单样本</small></span></button>
       <button aria-pressed={mode === 'training'} onClick={() => { setMode('training'); setError(''); }}><b>B</b><span>实时交叉验证<small>开发集 · 后台独立进程</small></span></button>
     </div>
-    <div className="notice-callout">这里展示的是<b>现场推理输出</b>或<b>现场新实验指标</b>。此前冻结的研究成绩请查看<Link to="/models">历史模型性能</Link>。现场实验不参与正式保留集评价。</div>
+    <div className="notice-callout">这里展示的是<b>现场推理输出</b>或<b>现场新实验指标</b>。此前冻结的研究成绩请查看<Link to="/models">历史模型性能</Link>。</div>
     {error && <Alert type="error" title="操作未完成" content={error} closable onClose={() => setError('')} />}
     {mode === 'inference' ? <>
       <div className="section-row"><h2>选择已验证的模型</h2><Button size="small" disabled={busy} onClick={() => void refreshRegistry().catch(reason => setError(getErrorMessage(reason)))}>刷新模型状态</Button></div>
@@ -162,8 +162,8 @@ export function LabPage() {
       </label>)}</div>}
       <Card className="panel-card" bordered={false} title="上传一个RNA-Seq表达样本">
         <div className="lab-upload-row"><label className="lab-file-label">选择 UTF-8 CSV<input aria-label="实验室单样本CSV" type="file" accept=".csv" disabled={busy} onChange={event => { setResults([]); setError(''); const candidate = event.target.files?.[0]; if (candidate && (!candidate.name.toLowerCase().endsWith('.csv') || candidate.size > 5*1024*1024)) { setFile(null); setError('只接受最高5 MiB的CSV。'); } else setFile(candidate ?? null); }} /></label><span>{file?.name ?? '尚未选择文件'}</span><Button type="primary" loading={busy} disabled={busy || !file || !selected.length} onClick={infer}>运行所选模型</Button></div>
-        <p className="lab-help">恰好1行，完整20,531个唯一 gene_* 列，可含 sample_id；按名称恢复列顺序。上传文件不写入实验记录，处理后关闭。请核实输入与原研究的表达处理尺度兼容。</p>
-        {results.length > 0 && <><div className="lab-result-label"><Tag color="green">现场冻结模型推理输出</Tag><span>类别输出不表示概率；耗时包含模型缓存读取/加载及predict。</span></div><Table rowKey="model_id" pagination={false} data={results} scroll={{ x: 760 }} columns={[
+        <p className="lab-help">恰好1行，完整20,531个唯一 gene_* 列，可含 sample_id；按名称恢复列顺序。输入采用与模型训练一致的表达处理尺度。</p>
+        {results.length > 0 && <><div className="lab-result-label"><Tag color="green">现场冻结模型推理输出</Tag><span>耗时包含模型缓存读取、加载及 predict。</span></div><Table rowKey="model_id" pagination={false} data={results} scroll={{ x: 760 }} columns={[
           { title: '模型', dataIndex: 'model_id' }, { title: '运行状态', dataIndex: 'status', render: value => value === 'success' ? '成功' : '不可用' },
           { title: '真实模型预测类别', dataIndex: 'predicted_class', render: value => value ?? '—' },
           { title: '推理耗时 ms', dataIndex: 'inference_ms', render: value => number(value, 2) },
@@ -182,7 +182,7 @@ export function LabPage() {
           <label>交叉验证<select aria-label="实验交叉验证" disabled={active || busy} value={configuration.cv_mode} onChange={event => setConfiguration({ ...configuration, cv_mode: event.target.value as LabConfiguration['cv_mode'] })}><option value="standard">分层5折</option><option value="repeated">重复5折 × 20轮</option></select></label>
         </div>
         <div className="prediction-actions"><Button type="primary" onClick={start} loading={busy && !active} disabled={loading || !capability?.available || active || busy}>提交真实交叉验证任务</Button><span>固定随机种子42；完整Pipeline在每个训练折重新拟合。</span></div>
-        <p className="lab-help">资源上限：同时1个训练任务、数值线程1、{capability?.limits.memory_limit_mb ?? '—'} MiB 内存、{capability?.limits.timeout_seconds ?? '—'}秒。反复查看结果并选择配置会产生开发集选择偏倚；现场分数只用于探索。</p>
+        <p className="lab-help">资源上限：同时1个训练任务、数值线程1、{capability?.limits.memory_limit_mb ?? '—'} MiB 内存、{capability?.limits.timeout_seconds ?? '—'}秒。</p>
       </Card>
       {task && <Card className="panel-card" bordered={false} title={<div className="lab-task-heading"><span>现场开发集交叉验证 <Tag color={task.status === 'completed' ? 'green' : task.status === 'failed' ? 'red' : 'orange'}>{STATUS[task.status] ?? task.status}</Tag></span><span className="lab-stream">{streamStatus}</span></div>}>
         <div className="lab-task-meta"><code>{task.task_id}</code><span>{task.configuration.selection} / {task.configuration.selection === 'all' ? 20531 : task.configuration.k} / {task.configuration.classifier} / C={task.configuration.c}</span></div>
@@ -199,12 +199,11 @@ export function LabPage() {
             { title: '训练−验证', dataIndex: 'macro_f1_gap', render: value => number(value) },
             { title: '拟合耗时 s', dataIndex: 'fit_seconds', render: value => number(value, 2) },
           ]} /></> : <div className="remote-state">完成首个验证折后绘制真实指标曲线。</div>}
-        {task.summary && <div className="notice-callout">验证折 Macro-F1均值 {number(task.summary.fold.validation_macro_f1.mean, 6)}；样本标准差 {number(task.summary.fold.validation_macro_f1.sample_std, 6)}。{task.summary.interpretation}</div>}
+        {task.summary && <div className="notice-callout">验证折 Macro-F1均值 {number(task.summary.fold.validation_macro_f1.mean, 6)}；样本标准差 {number(task.summary.fold.validation_macro_f1.sample_std, 6)}。</div>}
       </Card>}
       <Card className="panel-card" bordered={false} title="现场实验运行记录" extra={<Button size="small" onClick={() => void refreshHistory().catch(reason => setError(getErrorMessage(reason)))}>刷新记录</Button>}>
         {history.length ? <div className="lab-history">{history.slice(0, 20).map(item => <button key={item.task_id} onClick={() => void openTask(item.task_id)}><code>{item.task_id.slice(0, 10)}</code><span>{item.configuration.selection} · {item.configuration.classifier} · {new Date(item.created_at).toLocaleString('zh-CN')}</span><Tag>{STATUS[item.status] ?? item.status} {item.completed_folds}/{item.total_folds}</Tag></button>)}</div> : <p>尚无现场训练记录。</p>}
       </Card>
     </>}
-    <p className="lab-help">本实验室只研究五类已患癌肿瘤的表达分类。固定161例保留数据不进入现场实验；系统不提供患癌风险、早筛或临床诊断。</p>
   </div>;
 }

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Alert, Card, Grid, Select, Table, Tag } from '@arco-design/web-react';
+import { Card, Grid, Select, Table, Tag } from '@arco-design/web-react';
 import type { EChartsOption } from 'echarts';
 import { useApi } from '../hooks';
 import type { ConfusionData, ErrorAnalysis, ModelComparisonData, PerClassData } from '../types/api';
@@ -80,12 +80,11 @@ export function ModelsPage() {
 
   return <div className="page-stack">
     <PageHeading eyebrow="MODEL EVALUATION" title="模型性能对比" description="按预先冻结的 M0–M5 顺序展示同源回顾性保留集结果，并与开发集重复交叉验证摘要并列查看。" extra={<Tag color="orange">保留集为回顾性评价</Tag>} />
-    <Alert type="warning" title="结果解释边界" content={comparison.envelope?.data.test_scope ?? '保留集不属于跨机构外部验证；开发集100个重复折具有相关性，不能作为100个独立样本进行推断。'} />
     <Card className="panel-card" bordered={false} title={<div><div className="panel-title">M0–M5 回顾性保留集指标</div><div className="panel-subtitle">实际独立特征数、错误数与分类性能</div></div>}>
       <RemotePanel loading={comparison.loading} error={comparison.error} status={comparison.envelope?.status} empty={!models.length}>
         <Table rowKey="model" columns={modelColumns} data={models} pagination={false} />
       </RemotePanel>
-      <SourceNote source={comparison.envelope?.source} note={comparison.envelope?.data.cv_scope} />
+      <SourceNote source={comparison.envelope?.source} />
     </Card>
     <Grid.Row gutter={[16, 16]}>
       <Grid.Col xs={24} xl={12}><ChartPanel title="六模型整体性能" subtitle="回顾性161例保留集；展示三个指标。" option={compareOption} loading={comparison.loading} error={comparison.error} status={comparison.envelope?.status} empty={!models.length} height={340} /></Grid.Col>
@@ -97,15 +96,15 @@ export function ModelsPage() {
           <RemotePanel loading={confusion.loading} error={confusion.error} status={confusion.envelope?.status} empty={!matrix.length}><EChart option={confusionOption} notMerge lazyUpdate style={{ height: 315 }} /></RemotePanel>
         </Card>
       </Grid.Col>
-      <Grid.Col xs={24} xl={12}><ChartPanel title="错误样本重合" subtitle="仅显示错误事件的聚合重合数，不公开样本ID。" option={overlapOption} loading={errors.loading} error={errors.error} status={errors.envelope?.status} empty={!errorRows.length} height={370} /></Grid.Col>
+      <Grid.Col xs={24} xl={12}><ChartPanel title="错误样本重合" subtitle="显示模型错误事件的重合计数。" option={overlapOption} loading={errors.loading} error={errors.error} status={errors.envelope?.status} empty={!errorRows.length} height={370} /></Grid.Col>
     </Grid.Row>
-    <Card className="panel-card" bordered={false} title={<div><div className="panel-title">相对 M1 的纠错与新增错误</div><div className="panel-subtitle">小样本错误事件仅作描述性比较</div></div>}>
+    <Card className="panel-card" bordered={false} title={<div><div className="panel-title">相对 M1 的纠错与新增错误</div><div className="panel-subtitle">各模型的纠错与新增错误计数</div></div>}>
       <RemotePanel loading={errors.loading} error={errors.error} status={errors.envelope?.status} empty={!errors.envelope?.data.relative_to_M1.length}>
         <Table rowKey="model" pagination={false} data={errors.envelope?.data.relative_to_M1 ?? []} columns={[
           { title: '对照模型', dataIndex: 'model' }, { title: '相对M1纠正', dataIndex: 'corrected_vs_M1' }, { title: '相对M1新增错误', dataIndex: 'new_errors_vs_M1' },
         ]} />
       </RemotePanel>
     </Card>
-    <div className="notice-callout"><strong>冻结模型顺序：</strong>{MODELS.map((model) => `${model.id} ${model.name}`).join(' · ')}。测试结果仅用于此次最终评价，不用于修改参数或选择新的主模型。</div>
+    <div className="notice-callout"><strong>冻结模型顺序：</strong>{MODELS.map((model) => `${model.id} ${model.name}`).join(' · ')}。</div>
   </div>;
 }

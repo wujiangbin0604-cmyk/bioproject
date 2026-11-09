@@ -2,9 +2,9 @@
 
 **基因表达分析与机器学习科研平台，支持在线访问与本机独立运行。**
 
-**线上网址：[https://47.243.232.201/](https://47.243.232.201/)** · [基因猎手](https://47.243.232.201/games/gene-hunter) · [服务器更新与免登录配置](cloud_deployment/DASHBOARD_PUBLIC_SERVER_UPDATE.md)
+**线上网址：[https://47.243.232.201/](https://47.243.232.201/)** · [基因猎手](https://47.243.232.201/games/gene-hunter) · [服务器更新与免登录配置](cloud_deployment/FINAL_SERVER_UPDATE_20261109.md)
 
-[下载服务器更新包](server_updates/GeneScope2_Dashboard_Public_20261105_v1.zip) · [SHA-256 校验文件](server_updates/GeneScope2_Dashboard_Public_20261105_v1.zip.sha256)
+[下载服务器更新包](server_updates/GeneScope2_Final_20261109_v1.zip) · [SHA-256 校验文件](server_updates/GeneScope2_Final_20261109_v1.zip.sha256)
 
 本次服务器更新包包含新版医疗科研仪表盘，并将网站改为无需账号密码访问。现有服务器需执行上述更新说明中的应用命令，前端文件本身无法取消服务器网关的验证。
 

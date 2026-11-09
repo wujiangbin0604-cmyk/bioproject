@@ -80,7 +80,7 @@ export function AppShell() {
     <aside className="bio-sidebar"><nav aria-label="平台导航">{navigation()}</nav><div className="sidebar-science"><SidebarDNA /><span><Icon name="check" size={13} /> 可复现 · 可追溯 · 可探索</span></div>
       <Button className="collapse-button" type="text" onClick={() => update({ collapsed: !settings.collapsed })} aria-label={settings.collapsed ? '展开侧边栏' : '收起侧边栏'} icon={<Icon name="collapse" size={18} />}><span className="nav-label">收起导航</span></Button>
     </aside>
-    <div className="bio-main-frame"><main className="bio-page-content"><PageTransition key={location.pathname}><Outlet /></PageTransition></main><footer className="bio-footer"><span><Icon name="dna" size={14} /> GeneScope 2.0 · 生物信息学智能分析平台</span><span>真实数据 · 可复现实验 <i /> 科研与教学用途</span></footer></div>
+    <div className="bio-main-frame"><main className="bio-page-content"><PageTransition key={location.pathname}><Outlet /></PageTransition></main><footer className="bio-footer"><span><Icon name="dna" size={14} /> GeneScope 2.0 · 生物信息学智能分析平台</span><span>真实数据 · 可复现实验</span></footer></div>
     <Drawer title="GeneScope 2.0" visible={drawer} onCancel={() => setDrawer(false)} placement="left" width={270} footer={null} className="bio-nav-drawer">{navigation(true)}</Drawer>
     <Modal title={<span className="modal-title-icon"><Icon name="search" /> 全局搜索</span>} visible={searchOpen} footer={null} onCancel={() => setSearchOpen(false)} style={{ width: 'min(650px, 94vw)' }} autoFocus>
       <Input autoFocus placeholder="输入数据集、任务ID、模型或功能名称" aria-label="搜索平台内容" value={query} onChange={setQuery} allowClear />

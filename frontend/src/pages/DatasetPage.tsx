@@ -41,7 +41,7 @@ export function DatasetPage() {
   ];
 
   return <div className="page-stack">
-    <PageHeading eyebrow="DATA EXPLORATION" title="RNA-Seq 数据探索" description="查看 UCI Dataset 401 的样本组成、固定划分与质量检查摘要；原始表达矩阵不会发送到浏览器。" />
+    <PageHeading eyebrow="DATA EXPLORATION" title="RNA-Seq 数据探索" description="查看 UCI Dataset 401 的样本组成、固定划分与质量检查摘要。" />
     <div className="metric-grid four">
       <MetricCard label="总样本" value={data?.dataset.samples ?? '—'} detail="UCI Gene Expression Cancer RNA-Seq" accent="blue" />
       <MetricCard label="基因特征" value={data?.dataset.genes?.toLocaleString() ?? '—'} detail="保留原始 gene_* 匿名标识" accent="teal" />
@@ -60,19 +60,18 @@ export function DatasetPage() {
         </div>)}</div>
         <div className="alignment-note"><span className="check-mark">✓</span>样本标签按 sample ID 对齐；原始样本顺序与标签顺序一致。</div>
       </RemotePanel>
-      <SourceNote source={summary.envelope?.source} note={data?.data_source_note} />
+      <SourceNote source={summary.envelope?.source} />
     </Card>
     <section className="section-block">
       <div className="section-row"><div><div className="eyebrow">EXPLORATORY HEATMAPS</div><h2>开发集表达模式热图</h2></div><Tag color="arcoblue">仅 640 例开发集</Tag></div>
-      <Alert type="info" title="探索性可视化" content="患者列按预设癌种顺序排列（并非聚类结果）；每个基因按行做 Z-score 标准化，颜色表示相对该基因自身均值的变化，不代表绝对表达量。Top50 按全开发集方差或 ANOVA F-score 选择，仅用于探索性展示。" />
-      {heatmaps.loading ? <Skeleton loading={true} animation /> : heatmaps.error ? <Alert type="error" content={heatmaps.error} /> : heatmaps.envelope?.status === 'unavailable' ? <Alert type="warning" content="真实热图文件尚未导入，当前不会使用冻结模型元数据构造表达图。" /> : <Grid.Row gutter={[16, 16]} className="heatmap-grid">
+      <Alert type="info" title="表达热图" content="样本列按癌种顺序排列，每个基因按行进行 Z-score 标准化。Top50 按开发集方差或 ANOVA F-score 选择。" />
+      {heatmaps.loading ? <Skeleton loading={true} animation /> : heatmaps.error ? <Alert type="error" content={heatmaps.error} /> : heatmaps.envelope?.status === 'unavailable' ? <Alert type="warning" content="热图文件尚未导入，请导入表达热图后查看。" /> : <Grid.Row gutter={[16, 16]} className="heatmap-grid">
         {(heatmaps.envelope?.data.images ?? []).map((image) => <Grid.Col xs={24} key={image.method}>
           <Card className="panel-card heatmap-card" bordered={false} title={<div><div className="panel-title">{image.name}</div><div className="panel-subtitle">{image.standardization} · {image.sample_order}</div></div>}>
             {image.status === 'available' && image.url ? <img src={image.url} alt={`${image.name}表达热图`} loading="lazy" /> : <div className="remote-state">热图文件尚未导入</div>}
           </Card>
         </Grid.Col>)}
       </Grid.Row>}
-      <Alert className="notice-muted" type="warning" content={data?.holdout_notice ?? '保留集来自同一数据集，不属于跨机构外部验证。'} />
     </section>
   </div>;
 }

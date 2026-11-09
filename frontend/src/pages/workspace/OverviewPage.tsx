@@ -51,6 +51,6 @@ export default function OverviewPage() {
       <RecentExperimentsTable tasks={datasetTasks} datasets={datasets.data?.items ?? []} loading={tasks.loading} error={tasks.error} />
     </div>
     <WorkflowCard />
-    <p className="dashboard-research-note"><Icon name="info" size={14} /> 科研与教学用途。模型输出为特定数据集的类别预测；小游戏使用合成教学数据。<Link to="/research">查看原研究档案</Link></p>
+    <p className="dashboard-research-note"><Link to="/research">查看原研究档案</Link></p>
   </div>;
 }

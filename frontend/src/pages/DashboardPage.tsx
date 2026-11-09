@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Alert, Button, Card, Grid, Tag } from '@arco-design/web-react';
+import { Button, Card, Grid, Tag } from '@arco-design/web-react';
 import { useNavigate } from 'react-router-dom';
 import type { EChartsOption } from 'echarts';
 import { useApi } from '../hooks';
@@ -63,23 +63,22 @@ export function DashboardPage() {
 
     <Grid.Row gutter={[16, 16]}>
       <Grid.Col xs={24} xl={15}>
-        <ChartPanel title="M0–M5 Macro-F1 概览" subtitle="开发集100折均值与回顾性保留集分开呈现；折间统计为描述性结果。" option={chartOption} loading={comparisons.loading} error={comparisons.error} status={comparisons.envelope?.status} empty={!comparisons.envelope?.data.models.length} height={330} />
-        <SourceNote source={comparisons.envelope?.source} note={comparisons.envelope?.data.test_scope} />
+        <ChartPanel title="M0–M5 Macro-F1 概览" subtitle="开发集100折均值与回顾性保留集指标。" option={chartOption} loading={comparisons.loading} error={comparisons.error} status={comparisons.envelope?.status} empty={!comparisons.envelope?.data.models.length} height={330} />
+        <SourceNote source={comparisons.envelope?.source} />
       </Grid.Col>
       <Grid.Col xs={24} xl={9}>
         <Card className="panel-card health-card" bordered={false} title={<div><div className="panel-title">研究记录状态</div><div className="panel-subtitle">检查已保存的汇总文件</div></div>}>
           <RemotePanel loading={status.loading} error={status.error} status={status.envelope?.status}>
             <div className="status-list">{statusItems.map((item) => <div className="status-row" key={item.id}><span className={`status-indicator status-${item.status}`} /><span>{item.name}</span><Tag color={item.status === 'available' ? 'green' : item.status === 'invalid' ? 'red' : 'gray'}>{item.status === 'available' ? '已载入' : item.status === 'invalid' ? '格式异常' : '未导入'}</Tag></div>)}</div>
           </RemotePanel>
-          <div className="health-footnote">仅读取白名单内的汇总数据，不向浏览器发送原始矩阵或患者预测明细。</div>
+
         </Card>
       </Grid.Col>
     </Grid.Row>
 
     <div className="metric-grid two">
       <MetricCard label="M1 开发集 Macro-F1" value={typeof m1?.development_macro_f1_100fold_mean === 'number' ? (Number(m1.development_macro_f1_100fold_mean) * 100).toFixed(3) + '%' : '—'} detail="ANOVA Top50 + LinearSVC · 100个相关验证折" accent="blue" />
-      <MetricCard label="M1 回顾性保留集 Macro-F1" value={typeof m1?.macro_f1 === 'number' ? (Number(m1.macro_f1) * 100).toFixed(3) + '%' : '—'} detail="161例同源保留集；曾参与早期全样本探索" accent="amber" />
+      <MetricCard label="M1 回顾性保留集 Macro-F1" value={typeof m1?.macro_f1 === 'number' ? (Number(m1.macro_f1) * 100).toFixed(3) + '%' : '—'} detail="161例保留集" accent="amber" />
     </div>
-    <Alert className="research-notice" type="warning" title="研究范围说明" content="数据仅包含五类已患癌肿瘤样本，不含健康对照或纵向随访。模型用于五类表达类别的科研分类演示，不提供癌症筛查、患癌风险或临床诊断能力。" />
   </div>;
 }

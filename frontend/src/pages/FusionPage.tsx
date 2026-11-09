@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Alert, Card, Grid, Table, Tag } from '@arco-design/web-react';
+import { Card, Grid, Table, Tag } from '@arco-design/web-react';
 import type { EChartsOption } from 'echarts';
 import { useApi } from '../hooks';
 import type { FusionData } from '../types/api';
@@ -56,18 +56,17 @@ export function FusionPage() {
   ];
 
   return <div className="page-stack">
-    <PageHeading eyebrow="FEATURE FUSION & ENSEMBLES" title="特征融合与消融" description="对照等预算融合、特征集合交并、三模型硬投票与动态仲裁的既有开发集实验。" extra={<Tag color="purple">开发集探索性扩展</Tag>} />
-    <Alert type="warning" title="比较边界" content={data?.interpretation_note ?? '不同特征集合均能分类不等于已经证明信息互补；重复OOF事件也不代表独立患者。'} />
+    <PageHeading eyebrow="FEATURE FUSION & ENSEMBLES" title="特征融合与消融" description="对照等预算融合、特征集合交并、三模型硬投票与动态仲裁的既有开发集实验。" extra={<Tag color="purple">开发集特征融合</Tag>} />
     <Grid.Row gutter={[16, 16]}>
       <Grid.Col xs={24} xl={15}><ChartPanel title="Top50预算下的融合方案" subtitle="展示每种真实记录方案的验证 Macro-F1；标签缩写映射到结果表中的配置。" option={fusionOption} loading={result.loading} error={result.error} status={result.envelope?.status} empty={!perf.length} height={370} /></Grid.Col>
       <Grid.Col xs={24} xl={9}><ChartPanel title="ANOVA 与方差集合重合" subtitle="同K共享训练折的平均基因交集与并集。" option={overlapOption} loading={result.loading} error={result.error} status={result.envelope?.status} empty={!overlap.length} height={370} /></Grid.Col>
     </Grid.Row>
-    <Card className="panel-card" bordered={false} title={<div><div className="panel-title">特征融合性能与预算</div><div className="panel-subtitle">开发集重复交叉验证；相关验证折仅作描述性汇总</div></div>}>
+    <Card className="panel-card" bordered={false} title={<div><div className="panel-title">特征融合性能与预算</div><div className="panel-subtitle">开发集重复交叉验证</div></div>}>
       <RemotePanel loading={result.loading} error={result.error} status={result.envelope?.status} empty={!perf.length}><Table rowKey="scheme" columns={perfColumns} data={perf} pagination={{ pageSize: 8 }} /></RemotePanel>
-      <SourceNote source={result.envelope?.source} note={data?.event_note} />
+      <SourceNote source={result.envelope?.source} />
     </Card>
     <Grid.Row gutter={[16, 16]}>
-      <Grid.Col xs={24} xl={12}><Card className="panel-card" bordered={false} title={<div><div className="panel-title">相同划分的配对差异</div><div className="panel-subtitle">仅展示已有的描述统计，不作独立样本显著性检验</div></div>}>
+      <Grid.Col xs={24} xl={12}><Card className="panel-card" bordered={false} title={<div><div className="panel-title">相同划分的配对差异</div><div className="panel-subtitle">相同数据划分下的配对结果</div></div>}>
         <RemotePanel loading={result.loading} error={result.error} status={result.envelope?.status} empty={!data?.paired_comparisons.length}><Table rowKey={(row) => `${row.target}-${row.reference}`} columns={pairedColumns} data={data?.paired_comparisons ?? []} pagination={{ pageSize: 6 }} /></RemotePanel>
       </Card></Grid.Col>
       <Grid.Col xs={24} xl={12}><Card className="panel-card" bordered={false} title={<div><div className="panel-title">硬投票与动态仲裁</div><div className="panel-subtitle">直接读取既有实验汇总</div></div>}>
@@ -77,6 +76,5 @@ export function FusionPage() {
         </RemotePanel>
       </Card></Grid.Col>
     </Grid.Row>
-    <Alert type="info" title="额外成本与解释" content="融合方案实际使用的独立基因数可能高于单一Top-K；硬投票不输出患癌概率；动态仲裁源于既有开发集探索结果，不能作为独立验证成绩。" />
   </div>;
 }
